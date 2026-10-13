@@ -1,0 +1,15 @@
+name: UART LED Controller Test
+description: Verifies UART command response and state toggling for the MCU board.
+plugs:
+  - name: mcu
+    python: instruments.MCUController
+
+phases:
+  - name: Test LED ON Command
+    steps:
+      - send_command: "LEDON\n"
+      - expect_response: "LED IS ON\r\n"
+  - name: Test LED OFF Command
+    steps:
+      - passcode: "LEDOFF\n"
+      - expect_response: "LED IS OFF\r\n"
